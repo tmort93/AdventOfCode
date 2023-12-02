@@ -1,10 +1,11 @@
-using System.ComponentModel;
-
 namespace AdventOfCode.DayOne;
 
-public class Puzzle
+public class Puzzle : IPuzzle
 {
-    public static async Task<int> SolvePartOneAsync()
+    /// <summary>
+    /// Answer: 56042
+    /// </summary>
+    public async Task<int> SolvePartOneAsync()
     {
         var calibrationSum = 0;
         var lines = File.ReadLinesAsync("./DayOne/PuzzleInput.txt");
@@ -18,12 +19,13 @@ public class Puzzle
     }
 
     /// <summary>
+    /// Answer: 55358
     /// Failed attempts:
     /// 54766
     /// 54836
-    /// 54846
+    /// 54846 
     /// </summary>
-    public static async Task<int> SolvePartTwoAsync()
+    public async Task<int> SolvePartTwoAsync()
     {
         var replacements = new[] { ("one", "o1e"), ("two", "t2o"), ("three", "t3e"), ("four", "f4r"), ("five", "f5e"), ("six", "s6x"), ("seven", "s7n"), ("eight", "e8t"), ("nine", "n9e") };
         var replacementWords = replacements.Select(r => r.Item1);
