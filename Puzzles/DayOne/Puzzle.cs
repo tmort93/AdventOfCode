@@ -2,15 +2,17 @@ using AdventOfCode.Common;
 
 namespace AdventOfCode.DayOne;
 
-public class Puzzle : IPuzzle
+public class Puzzle : PuzzleBase
 {
+    protected override string DayPart => "DayOne";
+
     /// <summary>
     /// Answer: 56042
     /// </summary>
-    public async Task<int> SolvePartOneAsync()
+    public override async Task<int> SolvePartOneAsync()
     {
         var calibrationSum = 0;
-        var lines = File.ReadLinesAsync("./DayOne/PuzzleInput.txt");
+        var lines = File.ReadLinesAsync(GetPuzzleInputFilePath);
         await foreach (var line in lines)
         {
             var numerics = Array.FindAll(line.ToArray(), char.IsNumber);
@@ -27,12 +29,12 @@ public class Puzzle : IPuzzle
     /// 54836
     /// 54846 
     /// </summary>
-    public async Task<int> SolvePartTwoAsync()
+    public override async Task<int> SolvePartTwoAsync()
     {
         var replacements = new[] { ("one", "o1e"), ("two", "t2o"), ("three", "t3e"), ("four", "f4r"), ("five", "f5e"), ("six", "s6x"), ("seven", "s7n"), ("eight", "e8t"), ("nine", "n9e") };
         var replacementWords = replacements.Select(r => r.Item1);
         var calibrationSum = 0;
-        var lines = File.ReadLinesAsync("./DayOne/PuzzleInput.txt");
+        var lines = File.ReadLinesAsync(GetPuzzleInputFilePath);
         await foreach (var line in lines)
         {
             var updatedLine = line;

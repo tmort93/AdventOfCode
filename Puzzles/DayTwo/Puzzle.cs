@@ -2,15 +2,17 @@ using AdventOfCode.Common;
 
 namespace AdventOfCode.DayTwo;
 
-public class Puzzle : IPuzzle
+public class Puzzle : PuzzleBase
 {
+    protected override string DayPart => "DayTwo";
+
     /// <summary>
     /// Answer: 2256
     /// </summary>
-    public async Task<int> SolvePartOneAsync()
+    public override async Task<int> SolvePartOneAsync()
     {
         var possibleGamesSum = 0;
-        var lines = File.ReadLinesAsync("./DayTwo/PuzzleInput.txt");
+        var lines = File.ReadLinesAsync(GetPuzzleInputFilePath);
         await foreach (var line in lines)
         {
             var isValidGame = true;
@@ -54,10 +56,10 @@ public class Puzzle : IPuzzle
     /// <summary>
     /// Answer: 74229
     /// </summary>
-    public async Task<int> SolvePartTwoAsync()
+    public override async Task<int> SolvePartTwoAsync()
     {
         var gameMinimumSetPowerSum = 0;
-        var lines = File.ReadLinesAsync("./DayTwo/PuzzleInput.txt");
+        var lines = File.ReadLinesAsync(GetPuzzleInputFilePath);
         await foreach (var line in lines)
         {
             var redMinimum = 0;
