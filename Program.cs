@@ -1,10 +1,6 @@
-﻿namespace AdventOfCode;
+﻿using AdventOfCode.Common;
 
-public interface IPuzzle
-{
-    Task<int> SolvePartOneAsync();
-    Task<int> SolvePartTwoAsync();
-}
+namespace AdventOfCode;
 
 class Program
 {
@@ -12,7 +8,7 @@ class Program
     {
         var dayText = args[0];
         var day = int.Parse(dayText.Split('.')[0]);
-        var puzzle = GetPuzzle(day);
+        var puzzle = PuzzleFactory.GetPuzzle(day);
 
         if (!dayText.Contains(".2"))
         {
@@ -25,12 +21,4 @@ class Program
             Console.WriteLine($"Part2: {answer2}");
         }
     }
-
-    private static IPuzzle GetPuzzle(int day) =>
-        day switch
-        {
-            1 => new DayOne.Puzzle(),
-            2 => new DayTwo.Puzzle(),
-            _ => throw new ArgumentOutOfRangeException(nameof(day))
-        };
 }

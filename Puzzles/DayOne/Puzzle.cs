@@ -1,3 +1,5 @@
+using AdventOfCode.Common;
+
 namespace AdventOfCode.DayOne;
 
 public class Puzzle : IPuzzle
