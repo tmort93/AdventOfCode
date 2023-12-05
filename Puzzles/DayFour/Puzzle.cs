@@ -32,43 +32,39 @@ public class Puzzle : PuzzleBase
     }
 
     /// <summary>
-    /// Answer: 
+    /// Answer: 10425665
+    /// Failed attempts:
+    /// 1027
     /// </summary>
     public override async Task<int> SolvePartTwoAsync()
     {
-        return -1;
-    }
-
-    private List<(string, List<int>)> GetPossiblePartNumbers(string? line)
-    {
-        var possiblePartNumbers = new List<(string, List<int>)>();
-
-        if (line == null)
-            return possiblePartNumbers;
-
-        var partNumberText = string.Empty;
-        var partNumberDigitIndexes = new List<int>();
-        for (var j = 0; j < line.Length; j++)
+        var lines = File.ReadLines(GetPuzzleInputFilePath).ToArray();
+        var scratchCardCounts = new int[lines.Length];
+        for (var i = 0; i < lines.Length; i++)
         {
-            var currentChar = line[j];
-            if (char.IsNumber(currentChar))
-            {
-                partNumberText += currentChar;
-                partNumberDigitIndexes.Add(j);
-            }
-            else if (partNumberText != string.Empty)
-            {
-                possiblePartNumbers.Add((partNumberText, partNumberDigitIndexes));
-                partNumberText = string.Empty;
-                partNumberDigitIndexes = new List<int>();
-            }
-        }
-        // Handles number at end of line
-        if (partNumberText != string.Empty)
-        {
-            possiblePartNumbers.Add((partNumberText, partNumberDigitIndexes));
-        }
+            var line = lines[i];
+            var numberSplit = line.Split('|');
+            var winningNumberTextNoCardTitle = numberSplit[0].Split(':');
+            var normalizedWinningNumberText = winningNumberTextNoCardTitle[1].Trim().Replace("  ", " ");
+            var winningNumbers = normalizedWinningNumberText.Split(' ').Select(int.Parse);
+            var elfNumbers = numberSplit[1].Trim().Replace("  ", " ").Split(' ').Select(int.Parse);
+            var matchingNumbersCount = winningNumbers.Intersect(elfNumbers).Count();
 
-        return possiblePartNumbers;
+            scratchCardCounts[i] += 1;
+            var kStop = scratchCardCounts[i];
+            for (var k = 0; k < kStop; k++)
+            {
+                var jStop = i + 1 + matchingNumbersCount;
+                if (jStop > lines.Length)
+                    jStop = lines.Length;
+                for (var j = i + 1; j < jStop; j++)
+                {
+                    scratchCardCounts[j] += 1;
+                }
+            }
+
+        }
+        var totalScratchCards = scratchCardCounts.Sum();
+        return totalScratchCards;
     }
 }
