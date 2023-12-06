@@ -4,10 +4,13 @@ namespace AdventOfCode;
 
 class Program
 {
+    public static bool IsTest = false;
+
     static async Task Main(string[] args)
     {
         var dayText = args[0];
         var day = int.Parse(dayText.Split('.')[0]);
+        IsTest = args.Length > 1 && args[1] == "test";
         var puzzle = PuzzleFactory.GetPuzzle(day);
 
         if (!dayText.Contains(".2"))
