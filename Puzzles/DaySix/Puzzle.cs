@@ -37,15 +37,15 @@ public class Puzzle : PuzzleBase
     }
 
     /// <summary>
-    /// Answer: 
+    /// Answer: 34655848
     /// </summary>
     public override async Task<int> SolvePartTwoAsync()
     {
         var lines = File.ReadLines(GetPuzzleInputFilePath).ToArray();
         var timeText = lines[0].Split(':')[1].Split(' ').Where(i => i != string.Empty).Aggregate((a, b) => a + b);
         var recordDistanceText = lines[1].Split(':')[1].Split(' ').Where(i => i != string.Empty).Aggregate((a, b) => a + b);
-        var time = int.Parse(timeText);
-        var recordDistance = int.Parse(recordDistanceText);
+        var time = long.Parse(timeText);
+        var recordDistance = long.Parse(recordDistanceText);
 
         var raceOptions = 0;
         for (var i = time - 1; i > 0; i--)
