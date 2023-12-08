@@ -11,7 +11,7 @@
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
             "program": "${workspaceFolder}/bin/Debug/net8.0/AdventOfCode.dll",
-            "args": ["${input:day}"],
+            "args": ["${input:day}", "${input:test}"],
             "cwd": "${workspaceFolder}",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
             "console": "integratedTerminal",
@@ -29,6 +29,12 @@
             "id": "day",
             "description": "Enter the day of the puzzle you want to run.",
             "default": "1"
+        },
+        {
+            "type": "promptString",
+            "id": "test",
+            "description": "Enter 'test' if you want to use the example puzzle input.",
+            "default": ""
         }
     ]
 }
