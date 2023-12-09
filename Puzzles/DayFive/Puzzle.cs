@@ -11,7 +11,7 @@ public class Puzzle : PuzzleBase
     /// Failed attempts:
     /// 481772950
     /// </summary>
-    public override async Task<int> SolvePartOneAsync()
+    public override async Task<long> SolvePartOneAsync()
     {
         var seeds = Array.Empty<long>();
         var maps = new List<List<Tuple<long, long, long>>>();
@@ -58,13 +58,13 @@ public class Puzzle : PuzzleBase
             }
             locationCodes.Add(code);
         }
-        return (int)locationCodes.Min();
+        return locationCodes.Min();
     }
 
     /// <summary>
     /// Answer: 47909639
     /// </summary>
-    public override async Task<int> SolvePartTwoAsync()
+    public override async Task<long> SolvePartTwoAsync()
     {
 
         var baseSeeds = new List<long>();
@@ -129,6 +129,6 @@ public class Puzzle : PuzzleBase
         }
 
         var min = seeds.Min();
-        return (int)min!.Item1;
+        return min!.Item1;
     }
 }

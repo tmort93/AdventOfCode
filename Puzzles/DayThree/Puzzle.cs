@@ -18,7 +18,7 @@ public class Puzzle : PuzzleBase
     ///         of characters to inspect on previous, current, and next line
     /// 4. If symbol is found, add part number to sum
     /// </summary>
-    public override async Task<int> SolvePartOneAsync()
+    public override async Task<long> SolvePartOneAsync()
     {
         var partNumberSum = 0;
         var lines = File.ReadLines(GetPuzzleInputFilePath).ToArray();
@@ -118,7 +118,7 @@ public class Puzzle : PuzzleBase
     /// <summary>
     /// Answer: 91622824
     /// </summary>
-    public override async Task<int> SolvePartTwoAsync()
+    public override async Task<long> SolvePartTwoAsync()
     {
         var partNumberSum = 0;
         var lines = File.ReadLines(GetPuzzleInputFilePath).ToArray();

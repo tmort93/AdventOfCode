@@ -9,7 +9,7 @@ public class Puzzle : PuzzleBase
     /// <summary>
     /// Answer: 2256
     /// </summary>
-    public override async Task<int> SolvePartOneAsync()
+    public override async Task<long> SolvePartOneAsync()
     {
         var possibleGamesSum = 0;
         var lines = File.ReadLinesAsync(GetPuzzleInputFilePath);
@@ -56,7 +56,7 @@ public class Puzzle : PuzzleBase
     /// <summary>
     /// Answer: 74229
     /// </summary>
-    public override async Task<int> SolvePartTwoAsync()
+    public override async Task<long> SolvePartTwoAsync()
     {
         var gameMinimumSetPowerSum = 0;
         var lines = File.ReadLinesAsync(GetPuzzleInputFilePath);

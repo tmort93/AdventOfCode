@@ -9,7 +9,7 @@ public class Puzzle : PuzzleBase
     /// <summary>
     /// Answer: 253910319
     /// </summary>
-    public override async Task<int> SolvePartOneAsync()
+    public override async Task<long> SolvePartOneAsync()
     {
         var lines = File.ReadLinesAsync(GetPuzzleInputFilePath);
         var hands = new List<Hand>();
@@ -95,7 +95,7 @@ public class Puzzle : PuzzleBase
     /// Failed attempts:
     /// 254469586
     /// </summary>
-    public override async Task<int> SolvePartTwoAsync()
+    public override async Task<long> SolvePartTwoAsync()
     {
         var lines = File.ReadLinesAsync(GetPuzzleInputFilePath);
         var hands = new List<Hand>();

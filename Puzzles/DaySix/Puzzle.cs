@@ -9,7 +9,7 @@ public class Puzzle : PuzzleBase
     /// <summary>
     /// Answer: 588588
     /// </summary>
-    public override async Task<int> SolvePartOneAsync()
+    public override async Task<long> SolvePartOneAsync()
     {
         var lines = File.ReadLines(GetPuzzleInputFilePath).ToArray();
         var times = lines[0].Split(':')[1].Split(' ').Where(i => i != string.Empty).Select(int.Parse).ToArray();
@@ -39,7 +39,7 @@ public class Puzzle : PuzzleBase
     /// <summary>
     /// Answer: 34655848
     /// </summary>
-    public override async Task<int> SolvePartTwoAsync()
+    public override async Task<long> SolvePartTwoAsync()
     {
         var lines = File.ReadLines(GetPuzzleInputFilePath).ToArray();
         var timeText = lines[0].Split(':')[1].Split(' ').Where(i => i != string.Empty).Aggregate((a, b) => a + b);

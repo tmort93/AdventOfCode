@@ -8,6 +8,6 @@ public abstract class PuzzleBase : IPuzzle
         : "PuzzleInput.txt";
     protected string GetPuzzleInputFilePath => $"./Puzzles/{DayPart}/{FileName}";
 
-    public abstract Task<int> SolvePartOneAsync();
-    public abstract Task<int> SolvePartTwoAsync();
+    public abstract Task<long> SolvePartOneAsync();
+    public abstract Task<long> SolvePartTwoAsync();
 }

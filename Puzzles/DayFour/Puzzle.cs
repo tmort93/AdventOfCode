@@ -9,7 +9,7 @@ public class Puzzle : PuzzleBase
     /// <summary>
     /// Answer: 21558
     /// </summary>
-    public override async Task<int> SolvePartOneAsync()
+    public override async Task<long> SolvePartOneAsync()
     {
         var totalPoints = 0;
         var lines = File.ReadLinesAsync(GetPuzzleInputFilePath);
@@ -36,7 +36,7 @@ public class Puzzle : PuzzleBase
     /// Failed attempts:
     /// 1027
     /// </summary>
-    public override async Task<int> SolvePartTwoAsync()
+    public override async Task<long> SolvePartTwoAsync()
     {
         var lines = File.ReadLines(GetPuzzleInputFilePath).ToArray();
         var scratchCardCounts = new int[lines.Length];

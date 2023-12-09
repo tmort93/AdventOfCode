@@ -9,7 +9,7 @@ public class Puzzle : PuzzleBase
     /// <summary>
     /// Answer: 56042
     /// </summary>
-    public override async Task<int> SolvePartOneAsync()
+    public override async Task<long> SolvePartOneAsync()
     {
         var calibrationSum = 0;
         var lines = File.ReadLinesAsync(GetPuzzleInputFilePath);
@@ -29,7 +29,7 @@ public class Puzzle : PuzzleBase
     /// 54836
     /// 54846 
     /// </summary>
-    public override async Task<int> SolvePartTwoAsync()
+    public override async Task<long> SolvePartTwoAsync()
     {
         var replacements = new[] { ("one", "o1e"), ("two", "t2o"), ("three", "t3e"), ("four", "f4r"), ("five", "f5e"), ("six", "s6x"), ("seven", "s7n"), ("eight", "e8t"), ("nine", "n9e") };
         var replacementWords = replacements.Select(r => r.Item1);
