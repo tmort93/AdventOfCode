@@ -24,7 +24,7 @@ public class Puzzle : PuzzleBase
         return diffs;
     }
 
-    public long GetDiff(List<int> codes)
+    public static long GetDiff(List<int> codes)
     {
         var newCodes = new List<int>();
         for (var i = 0; i < codes.Count - 1; i++)
@@ -40,10 +40,21 @@ public class Puzzle : PuzzleBase
     }
 
     /// <summary>
-    /// Answer: 
+    /// Answer: 1097
     /// </summary>
     public override async Task<long> SolvePartTwoAsync()
     {
-        return -1;
+        long diffs = 0;
+
+        var lines = File.ReadLinesAsync(GetPuzzleInputFilePath);
+        await foreach (var line in lines)
+        {
+            var codes = line.Split(' ').Select(int.Parse).ToList();
+            codes.Reverse();
+            var diff = GetDiff(codes);
+            diffs += diff;
+        }
+
+        return diffs;
     }
 }
