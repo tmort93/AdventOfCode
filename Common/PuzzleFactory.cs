@@ -13,6 +13,7 @@ public class PuzzleFactory
             6 => new DaySix.Puzzle(),
             7 => new DaySeven.Puzzle(),
             8 => new DayEight.Puzzle(),
+            9 => new DayNine.Puzzle(),
             _ => throw new ArgumentOutOfRangeException(nameof(day))
         };
 }
