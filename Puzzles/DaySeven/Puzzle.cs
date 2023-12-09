@@ -1,4 +1,3 @@
-using System.Collections;
 using AdventOfCode.Common;
 
 namespace AdventOfCode.DaySeven;
