@@ -123,13 +123,148 @@ public class Puzzle : PuzzleBase
     /// </summary>
     public override async Task<long> SolvePartTwoAsync()
     {
-        long diffs = 0;
-
-        var lines = File.ReadLinesAsync(GetPuzzleInputFilePath);
-        await foreach (var line in lines)
+        int sRowIndex = 0;
+        int sColumnIndex = 0;
+        var grid = new List<List<char>>();
+        var lines = File.ReadLines(GetPuzzleInputFilePath).ToArray();
+        foreach (var line in lines)
         {
+            var row = new List<char>();
+            grid.Add(row);
+            foreach (var symbol in line)
+            {
+                row.Add(symbol);
+                if (symbol == 'S')
+                {
+                    sRowIndex = grid.Count - 1;
+                    sColumnIndex = row.Count - 1;
+                }
+            }
         }
 
-        return diffs;
+        var gridPoints = new List<(int, int)>();
+        long stepCount = 1;
+        var pCharRowI = sRowIndex;
+        var pCharColI = sColumnIndex;
+        // var cCharRowI = sRowIndex - 1;
+        var cRowIndex = sRowIndex + 1;
+        var cColumnIndex = sColumnIndex;
+        var prevChar = 'S';
+        // var currentChar = '7';
+        var currentChar = '|';
+        // gridPoints.Add((sRowIndex, sColumnIndex));
+        // gridPoints.Add((cRowIndex, cColumnIndex));
+        var leftCount = 0;
+        var rightCount = 0;
+        do
+        {
+            var tCharRowI = cRowIndex;
+            var tCharColI = cColumnIndex;
+            if (currentChar == '|')
+            {
+                if (pCharRowI > cRowIndex)
+                    cRowIndex--;
+                else
+                    cRowIndex++;
+            }
+            else if (currentChar == '-')
+            {
+                if (pCharColI < cColumnIndex)
+                    cColumnIndex++;
+                else
+                    cColumnIndex--;
+            }
+            else if (currentChar == 'L')
+            {
+                if (pCharRowI < cRowIndex)
+                {
+                    cColumnIndex++;
+                }
+                else
+                {
+                    cRowIndex--;
+                }
+            }
+            else if (currentChar == 'J')
+            {
+                if (pCharRowI < cRowIndex)
+                {
+                    cColumnIndex--;
+                }
+                else
+                {
+                    cRowIndex--;
+                }
+            }
+            else if (currentChar == '7')
+            {
+                if (pCharRowI > cRowIndex)
+                {
+                    cColumnIndex--;
+                }
+                else
+                {
+                    cRowIndex++;
+                }
+            }
+            else if (currentChar == 'F')
+            {
+                if (pCharRowI > cRowIndex)
+                {
+                    cColumnIndex++;
+                }
+                else
+                {
+                    cRowIndex++;
+                }
+            }
+            else if (currentChar == '.')
+            {
+                throw new InvalidOperationException($"Unexpected ground at index [{cRowIndex}][{cColumnIndex}]");
+            }
+            pCharRowI = tCharRowI;
+            pCharColI = tCharColI;
+            prevChar = currentChar;
+            stepCount++;
+            currentChar = grid[cRowIndex][cColumnIndex];
+            // gridPoints.Add((cRowIndex, cColumnIndex));
+        }
+        while (currentChar != 'S');
+
+        // var inLoop = false;
+        // var inLoopTileCount = 0;
+        // for (var i = 0; i < grid.Count; i++)
+        // {
+        //     for (var j = 0; j < grid[i].Count; j++)
+        //     {
+        //         if (inLoop)
+        //             inLoopTileCount++;
+        //         if (gridPoints.Contains((i, j)))
+        //         {
+        //             if (grid[i][j] == '|')
+        //                 inLoop = !inLoop;
+        //         }
+        //     }
+        // }
+
+        // var inLoop = false;
+        var inLoopTileCount = 0;
+        for (var r = 0; r < grid.Count; r++)
+        {
+            for (var c = 0; c < grid[r].Count; c++)
+            {
+                if (!gridPoints.Contains((r, c)))
+                {
+                    var inLoop = gridPoints
+                        .Where(gp => gp.Item1 == r && gp.Item2 > c)
+                        .Select(gp => gp.Item2)
+                        .Count(ci => grid[r][ci] == '|') % 2 != 0;
+                    if (inLoop)
+                        inLoopTileCount++;
+                }
+            }
+        }
+
+        return inLoopTileCount;
     }
 }
