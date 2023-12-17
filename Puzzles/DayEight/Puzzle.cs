@@ -22,7 +22,7 @@ public class Puzzle : PuzzleBase
         }
 
         var currentNode = "AAA";
-        var stepCount = 0;
+        long stepCount = 0;
         for (int i = 0; i < instructions.Length; i++)
         {
             stepCount++;
@@ -39,7 +39,7 @@ public class Puzzle : PuzzleBase
             }
         }
 
-        return stepCount;
+        return await Task.FromResult(stepCount);
     }
 
     /// <summary>
@@ -86,7 +86,7 @@ public class Puzzle : PuzzleBase
         }
 
         var lcm = Lcm(stepCounts);
-        return lcm;
+        return await Task.FromResult(lcm);
     }
 
     static long Lcm(long[] numbers)

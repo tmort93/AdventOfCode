@@ -33,7 +33,7 @@ public class Puzzle : PuzzleBase
             raceMargins.Add(raceOptions.Count());
         }
 
-        return raceMargins.Aggregate(1, (a, b) => a * b);
+        return await Task.FromResult(raceMargins.Aggregate(1, (a, b) => a * b));
     }
 
     /// <summary>
@@ -58,6 +58,6 @@ public class Puzzle : PuzzleBase
             }
         }
 
-        return raceOptions;
+        return await Task.FromResult(raceOptions);
     }
 }

@@ -115,7 +115,7 @@ public class Puzzle : PuzzleBase
         while (currentChar != 'S');
 
         long midPoint = stepCount / 2;
-        return midPoint;
+        return await Task.FromResult(midPoint);
     }
 
     /// <summary>
@@ -265,6 +265,9 @@ public class Puzzle : PuzzleBase
             }
         }
 
-        return inLoopTileCount;
+        Console.WriteLine(leftCount);
+        Console.WriteLine(rightCount);
+
+        return await Task.FromResult(inLoopTileCount);
     }
 }

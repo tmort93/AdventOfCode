@@ -112,7 +112,7 @@ public class Puzzle : PuzzleBase
             }
             previousLine = currentLine;
         }
-        return partNumberSum;
+        return await Task.FromResult(partNumberSum);
     }
 
     /// <summary>
@@ -179,7 +179,7 @@ public class Puzzle : PuzzleBase
             previousLinePossiblePartNumbers = currentLinePossiblePartNumbers;
             currentLinePossiblePartNumbers = nextLinePossiblePartNumbers;
         }
-        return partNumberSum;
+        return await Task.FromResult(partNumberSum);
     }
 
     #region Helpers

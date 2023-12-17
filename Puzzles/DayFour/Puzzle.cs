@@ -65,6 +65,6 @@ public class Puzzle : PuzzleBase
 
         }
         var totalScratchCards = scratchCardCounts.Sum();
-        return totalScratchCards;
+        return await Task.FromResult(totalScratchCards);
     }
 }
